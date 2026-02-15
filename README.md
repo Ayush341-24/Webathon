@@ -124,26 +124,26 @@ Next best helper assigned automatically.
 🚀 Future Enhancements
 
 🔮 AI-based helper recommendation                                                                                                                                        
-🔮 Estimated arrival time (ETA) prediction                                                                                                  
-🔮 Dynamic pricing model
-🔮 In-app chat & calling
-🔮 Notifications system
-🔮 Helper analytics dashboard
-🔮 Fraud detection
-🔮 Multi-city scaling
+🔮 Estimated arrival time (ETA) prediction                                                                                                                                              
+🔮 Dynamic pricing model                                                
+🔮 In-app chat & calling                                          
+🔮 Notifications system                                                  
+🔮 Helper analytics dashboard                                                  
+🔮 Fraud detection                                                            
+🔮 Multi-city scaling                                                              
 
 ---
 
-🧪 Potential Improvements
+🧪 Potential Improvements                                                  
 
-✅ Booking history & tracking
-✅ Admin control panel
-✅ Helper performance metrics
-✅ Cancellation logic
-✅ Payment integration
+✅ Booking history & tracking                                              
+✅ Admin control panel                                                    
+✅ Helper performance metrics                                                  
+✅ Cancellation logic                                                  
+✅ Payment integration                                                        
 
 ---
 
-👨‍💻 Author
+👨‍💻 Author                                  
 
-Developed by Ayush Ranjan
+Developed by Ayush Ranjan                          
