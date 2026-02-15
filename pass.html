@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuickHelp - Responsive UI</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; min-height: 100vh; background: #f8fafc; color: #1e293b; }
+    .page { display: none; min-height: 100vh; padding-top: 4rem; }
+    .page.active { display: block; }
+    nav { position: fixed; top: 0; left: 0; right: 0; background: #fff; border-bottom: 1px solid #e2e8f0; z-index: 50; padding: 0 1rem; height: 4rem; display: flex; align-items: center; justify-content: space-between; }
+    nav a { color: #475569; text-decoration: none; font-weight: 500; }
+    nav a:hover { color: #0f172a; }
+    .logo { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.25rem; }
+    .logo-box { width: 2.5rem; height: 2.5rem; background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; color: #fff; }
+    .nav-links { display: flex; gap: 2rem; }
+    .btn { padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-weight: 600; cursor: pointer; border: none; font-size: 1rem; }
+    .btn-primary { background: #2563eb; color: #fff; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .hero { text-align: center; padding: 3rem 1rem; max-width: 56rem; margin: 0 auto; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #0f172a; }
+    .hero .accent { color: #2563eb; }
+    .hero p { font-size: 1.125rem; color: #475569; margin-bottom: 2rem; }
+    .mobile-menu { display: none; }
+    @media (max-width: 768px) { .nav-links { display: none; } .mobile-menu { display: block; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" class="logo" data-page="landing"><span class="logo-box">Q</span> QuickHelp</a>
+    <div class="nav-links">
+      <a href="#" data-page="landing">Home</a>
+      <a href="#" data-page="book">Book Service</a>
+      <a href="#" data-page="helper">Helper Portal</a>
+    </div>
+    <button class="mobile-menu btn" aria-label="Menu">☰</button>
+  </nav>
+
+  <main id="page-landing" class="page active">
+    <section class="hero">
+      <h1>Book Trusted House Help <br><span class="accent">in Under 15 Minutes</span></h1>
+      <p>Smart auto-assignment connects you with verified helpers instantly.</p>
+      <button class="btn btn-primary" data-page="book">Book a Service →</button>
+    </section>
+  </main>
+
+  <main id="page-book" class="page">
+    <div style="max-width: 56rem; margin: 0 auto; padding: 2rem;">
+      <h1 style="text-align: center; margin-bottom: 1rem;">Book a Service</h1>
+      <p style="text-align: center; color: #475569; margin-bottom: 2rem;">Select a service and we'll find the best helper for you</p>
+      <div style="background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+        <label style="display: block; font-weight: 600; margin-bottom: 1rem;">Service Location</label>
+        <input type="text" id="booking-address" placeholder="Enter your complete address" style="width: 100%; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 0.75rem; font-size: 1rem;">
+        <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" id="book-now">Book Now</button>
+      </div>
+    </div>
+  </main>
+
+  <main id="page-helper" class="page">
+    <div style="max-width: 56rem; margin: 0 auto; padding: 2rem;">
+      <h1>Helper Dashboard</h1>
+      <p style="color: #475569; margin-bottom: 2rem;">Manage your availability and bookings</p>
+      <div style="background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+        <p style="font-weight: 600;">Availability: Offline</p>
+        <p style="color: #64748b; font-size: 0.875rem;">Turn on availability to start receiving booking requests</p>
+      </div>
+    </div>
+  </main>
+
+  <main id="page-status" class="page">
+    <div style="max-width: 32rem; margin: 0 auto; padding: 2rem;">
+      <div id="status-content" style="background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); text-align: center;">
+        <p id="status-message">Searching for Helper...</p>
+        <p id="status-address" style="color: #475569; font-size: 0.875rem; margin-top: 1rem;"></p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var pages = document.querySelectorAll('.page');
+      function showPage(id) {
+        pages.forEach(function (p) {
+          p.classList.toggle('active', p.id === 'page-' + id);
+        });
+      }
+      document.querySelectorAll('[data-page]').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          var page = el.getAttribute('data-page');
+          if (page) showPage(page);
+        });
+      });
+      document.getElementById('book-now').addEventListener('click', function () {
+        var address = document.getElementById('booking-address').value.trim();
+        if (!address) return alert('Please enter your address');
+        sessionStorage.setItem('bookingAddress', address);
+        showPage('status');
+        var msg = document.getElementById('status-message');
+        var addr = document.getElementById('status-address');
+        addr.textContent = address;
+        msg.textContent = 'Searching for Helper...';
+        setTimeout(function () {
+          msg.textContent = 'Helper Assigned! We will contact you shortly.';
+        }, 3000);
+      });
+    })();
+  </script>
+</body>
+</html>
