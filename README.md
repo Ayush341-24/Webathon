@@ -123,8 +123,8 @@ Next best helper assigned automatically.
 
 🚀 Future Enhancements
 
-🔮 AI-based helper recommendation
-🔮 Estimated arrival time (ETA) prediction
+🔮 AI-based helper recommendation                                                                                                                                        
+🔮 Estimated arrival time (ETA) prediction                                                                                                  
 🔮 Dynamic pricing model
 🔮 In-app chat & calling
 🔮 Notifications system
