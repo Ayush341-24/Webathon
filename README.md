@@ -123,4 +123,4 @@ Next best helper assigned automatically.
 
 👨‍💻 Author                                  
 
-Developed by Ayush Ranjan                          
+Developed by Ayush Ranjan, Lakshya Pandey
